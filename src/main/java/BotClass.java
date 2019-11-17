@@ -17,7 +17,7 @@ public class BotClass extends AbilityBot {
     Map<Long, Integer> userToCorrectAnswers = new HashMap<>();
 
 
-    BotClass(String botToken, String botUsername, DefaultBotOptions options) {
+    BotClass(String botToken, String botUsername, DefaultBotOptions options) throws TelegramApiException{
         super(botToken, botUsername, options);
     }
 
@@ -47,8 +47,6 @@ public class BotClass extends AbilityBot {
             userToCount.putIfAbsent(update.getMessage().getChatId(), 0);
             if (update.getMessage().hasText()) {
                 if (update.getMessage().getText().equals("Java")) {
-                    // for (int i = 0; i < Entity.listOfQuestions.size(); i++) {
-                    //Для каждого из вопросов надо обрабатывать эксепшн
                     try {
                         execute(sendInlineKeyBoardMessage(update.getMessage().getChatId(),
                                 Entity.listOfPossibleAnswers.get(0).getOne(),
@@ -69,7 +67,6 @@ public class BotClass extends AbilityBot {
                     }
                     return;
                 } else {
-
                     return;
                 }
             }
@@ -127,8 +124,8 @@ public class BotClass extends AbilityBot {
     }
 
     private static SendMessage sendInlineKeyBoardMessage(long chatId, String answer1, String
-            answer2, String
-                                                                 answer3, String answer4,
+            answer2,
+                                                         String answer3, String answer4,
                                                          String value1, String value2, String value3, String value4, String question) {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         InlineKeyboardButton inlineKeyboardButton1 = new InlineKeyboardButton();
