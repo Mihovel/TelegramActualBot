@@ -16,7 +16,7 @@ public class MainClass {
     private static String PROXY_HOST = "51.158.108.135" /* proxy host */;
     private static Integer PROXY_PORT = 8811 /* proxy port */;
 
-    public static void main(String[] args) throws TelegramApiException {
+    public static void main(String[] args) {
         try {
             ApiContextInitializer.init();
 
